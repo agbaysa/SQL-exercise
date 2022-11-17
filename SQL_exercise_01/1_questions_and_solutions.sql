@@ -107,6 +107,18 @@ from
     and
     max_price_mapping.price = products_with_manu_name.price); 
 
+-- using CTE
+with table_price
+as (
+	 select m.name as "manuf_name", p.manufacturer, p.name as "prod_name", p.price
+		from products as p
+        join manufacturers as m
+			on p.manufacturer = m.code
+	)
+select manuf_name, manufacturer, prod_name, max(price)
+	from table_price as tp
+    group by manuf_name
+order by manuf_name, price desc;
 
 
 
