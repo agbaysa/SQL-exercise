@@ -69,6 +69,13 @@ SELECT Code
        WHERE Warehouse = Warehouses.Code
    );
 
+-- Without subquery
+ select code
+	from warehouses as w
+    inner join v_box_count as bc
+		on  w.code = bc.warehouse
+	where capacity < box_count
+order by capacity desc
 
 
 --3.10
